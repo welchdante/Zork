@@ -1,4 +1,10 @@
 from random import randint
+from Monster import *
+from Person import *
+from Zombie import *
+from Vampire import *
+from Ghoul import *
+from Werewolf import *
 
 class Home:
 
@@ -12,7 +18,7 @@ class Home:
         self.monsters_in_house = []
         for i in range(0, num_monsters):
             which_monster  = randint(0,4)
-            monster = self.find_monster_type(which_monster)
+            monster = self.gen_single_monster(which_monster)
             self.monsters_in_house.append(monster)
 
         print(self.monsters_in_house)
@@ -31,6 +37,7 @@ class Home:
         return monster
     
     def create_person(self):
+        print("Making a person")
         person = Person()
         return person
     
@@ -42,7 +49,7 @@ class Home:
     def create_vampire(self):
         print("Making a vampire")
         vampire = Vampire()
-        return zampire
+        return vampire
 
     def create_ghoul(self):
         print("Making a ghoul")
