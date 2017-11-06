@@ -8,3 +8,5 @@ class Neighborhood:
 
     def generate_board(self, height, width):
         print("Generate a board")
+
+example = Neighborhood(2, 3)
