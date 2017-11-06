@@ -1,3 +1,6 @@
 class Person(Monster):
-
-     def __init__(self):
+	import random
+	
+    def __init__(self):
+		self.hp = 100
+		self.attack = -1

@@ -1,6 +1,6 @@
 class Player:
 
-import random
+	import random
 
      def __init__(self):
 		self.hp = random.randint(100,125)

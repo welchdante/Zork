@@ -1,5 +1,5 @@
 class Weapon:
-
+	import random
      def __init__(self, other = true):
 		
 		
