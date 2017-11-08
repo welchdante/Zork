@@ -22,14 +22,26 @@ class Neighborhood:
         print("Fills a single location")
 
     def fill_neighborhood(self, grid):
-        for row in grid:
-            for item in row:
-                item = 1
-        print(grid)
+        i=0
+        j=0
+        while (i < len(grid)):
+            while(j < len(grid[i])):
+                grid[i][j] = 4
+                j = j + 1
+            j = 0
+            i = i + 1
+        return grid
+        
+        #for row in range(len(grid)):
+        #    pprint(row)
+        #    for item in range(row):
+        #        grid[row][item] = 8              
+        #return grid
 
 neighborhood = Neighborhood(4, 4)
 grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
-neighborhood.fill_neighborhood(grid)
+grid = neighborhood.fill_neighborhood(grid)
+pprint(grid)
 
 #board = neighborhood.generate_neighborhood(4,4)
 #neighborhood.print_board(board)
