@@ -1,9 +1,8 @@
 class Weapon:
-	import random
+	class Weapon:
+
      def __init__(self, other = true):
-		
-		
-		if(other == true)
+		if(other == true) :
 		
 			r = random.randint(0,2)
 			if r == 0 :
