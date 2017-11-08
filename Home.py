@@ -10,18 +10,17 @@ class Home:
 
     def gen_monsters(self):
         num_monsters = randint(0,9)
-        print("Num monsters:")
-        print(num_monsters)
-        self.gen_random_monster(num_monsters)
+        monsters = self.gen_random_monsters(num_monsters)
+        return monsters
     
-    def gen_random_monster(self, num_monsters):
+    def gen_random_monsters(self, num_monsters):
         self.monsters_in_house = []
         for i in range(0, num_monsters):
             which_monster  = randint(0,4)
             monster = self.gen_single_monster(which_monster)
             self.monsters_in_house.append(monster)
-
-        print(self.monsters_in_house)
+        #print(self.monsters_in_house)
+        return self.monsters_in_house
 
     def gen_single_monster(self, which_monster):    
         if which_monster == 0:
@@ -65,6 +64,6 @@ class Home:
         population = len(monsters_in_house)
         return population
 
-home = Home()
-home.gen_monsters()
-home.get_population(home.monsters_in_house)
+#home = Home()
+#home.gen_monsters()
+#home.get_population(home.monsters_in_house)
