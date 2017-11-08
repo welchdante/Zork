@@ -1,5 +1,5 @@
+import random
 class Weapon:
-	class Weapon:
 
      def __init__(self, other = true):
 		if(other == true) :
