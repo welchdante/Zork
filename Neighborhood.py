@@ -21,11 +21,15 @@ class Neighborhood:
     def fill_location(self, location):
         print("Fills a single location")
 
-    def fill_neighborhood(self):
-        print("Fills the entire neighborhood")
+    def fill_neighborhood(self, grid):
+        for row in grid:
+            for item in row:
+                item = 1
+        print(grid)
 
 neighborhood = Neighborhood(4, 4)
 grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
+neighborhood.fill_neighborhood(grid)
 
 #board = neighborhood.generate_neighborhood(4,4)
 #neighborhood.print_board(board)
