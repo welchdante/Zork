@@ -6,29 +6,32 @@ class Neighborhood:
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        #self.generate_neighborhood(height, width)
 
-    def generate_neighborhood(self, width, height):
-        board = [["*" for i in range(width)] for i in range(height)]
-        return board
+    def make_grid(self, rows, cols):
+        grid = []
+        for row in xrange(rows): grid += [[0]*cols]
+        return grid
 
-    def print_board(self, board):
-        for row in board:
-            for i in row:
-                print(i),
-            print("")
+    #def print_board(self, board):
+    #    for row in board:
+    #        for i in row:
+    #            print(i),
+    #        print("")
     
-    def fill_home():
-        print("call fill home in a for loop") 
+    def fill_location(self, location):
+        print("Fills a single location")
 
-    def fill_neighborhood(self, home, board, width, height):
-        print("don't know yet")
+    def fill_neighborhood(self):
+        print("Fills the entire neighborhood")
 
 neighborhood = Neighborhood(4, 4)
-board = neighborhood.generate_neighborhood(4,4)
-neighborhood.print_board(board)
-home = Home()
-neighborhood.fill_neighborhood(home, neighborhood , neighborhood.width, neighborhood.height)
+grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
+
+#board = neighborhood.generate_neighborhood(4,4)
+#neighborhood.print_board(board)
+#neighborhood.fill_neighborhood(board, neighborhood.width, neighborhood.height)
+#neighborhood.fill_neighborhood(home, neighborhood, neighborhood.width, neighborhood.height)
+
 #print()
 #print()
 #monsters = home.gen_monsters()
