@@ -3,7 +3,7 @@ class Weapon:
      def __init__(self, other = true):
 		
 		
-		if(other = true)
+		if(other == true)
 		
 			r = random.randint(0,2)
 			if r == 0 :
@@ -24,7 +24,7 @@ class Weapon:
 				self.use_value = 1
 				return self
 		
-		else
+		else:
 			self.weapon_name = "Hershey Kisses"
 			self.attack = 1
 			self.use_value = 999999
