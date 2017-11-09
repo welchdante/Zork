@@ -1,4 +1,4 @@
-from random import random
+from random import random, randint
 class Weapon:
 
      def __init__(self, other = true):
