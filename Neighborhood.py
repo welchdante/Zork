@@ -12,31 +12,22 @@ class Neighborhood:
         for row in xrange(rows): grid += [[0]*cols]
         return grid
 
-    #def print_board(self, board):
-    #    for row in board:
-    #        for i in row:
-    #            print(i),
-    #        print("")
-    
     def fill_location(self, location):
-        print("Fills a single location")
+        home = Home()
+        monsters = home.gen_monsters()
+        return monsters
+
 
     def fill_neighborhood(self, grid):
         i=0
         j=0
         while (i < len(grid)):
             while(j < len(grid[i])):
-                grid[i][j] = 4
+                grid[i][j] = self.fill_location(grid[i][j])
                 j = j + 1
             j = 0
             i = i + 1
         return grid
-        
-        #for row in range(len(grid)):
-        #    pprint(row)
-        #    for item in range(row):
-        #        grid[row][item] = 8              
-        #return grid
 
 neighborhood = Neighborhood(4, 4)
 grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
