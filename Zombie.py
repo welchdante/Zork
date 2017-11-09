@@ -1,5 +1,6 @@
 from Monster import *
 from random import randint
+
 class Zombie(Monster):
 
       def __init__(self):

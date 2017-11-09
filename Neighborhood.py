@@ -28,10 +28,10 @@ class Neighborhood:
             i = i + 1
         return grid
 
-neighborhood = Neighborhood(4, 4)
-grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
-grid = neighborhood.fill_neighborhood(grid)
-pprint(grid)
+#neighborhood = Neighborhood(4, 4)
+#grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
+#grid = neighborhood.fill_neighborhood(grid)
+#pprint(grid)
 
 #board = neighborhood.generate_neighborhood(4,4)
 #neighborhood.print_board(board)

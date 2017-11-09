@@ -1,7 +1,7 @@
-from random import random, randint
+from random import random, randint, uniform
 class Weapon:
 
-     def __init__(self, other = true):
+     def __init__(self, other):
 		if other:
 		
 			r = randint(0,2)
