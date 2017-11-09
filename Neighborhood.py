@@ -17,7 +17,6 @@ class Neighborhood:
         monsters = home.gen_monsters()
         return monsters
 
-
     def fill_neighborhood(self, grid):
         i=0
         j=0
