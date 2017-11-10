@@ -9,12 +9,12 @@ class Player:
 		self.weapons = []
 		
 	def gen_weapons(self, weapons):
-		is_hersey_kiss = False
-		new_weapon = Weapon(is_hersey_kiss)
+		is_hershey_kiss = False
+		new_weapon = Weapon(is_hershey_kiss)
 		self.weapons.append(new_weapon)
-		is_hersey_kiss = True
+		is_hershey_kiss = True
 		for x in xrange(9):
-			new_weapon = Weapon(is_hersey_kiss)
+			new_weapon = Weapon(is_hershey_kiss)
 			self.weapons.append(new_weapon)
 		return weapons
 

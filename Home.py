@@ -36,27 +36,22 @@ class Home:
         return monster
     
     def create_person(self):
-        print("Making a person")
         person = Person()
         return person
     
     def create_zombie(self):
-        print("Making a zombie")
         zombie = Zombie()
         return zombie
 
     def create_vampire(self):
-        print("Making a vampire")
         vampire = Vampire()
         return vampire
 
     def create_ghoul(self):
-        print("Making a ghoul")
         ghoul = Ghoul()
         return ghoul
 
     def create_werewolf(self):
-        print("Making a werewolf")
         werewolf = Werewolf()
         return werewolf
     
