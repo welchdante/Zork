@@ -11,7 +11,6 @@ class Game:
         grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
         grid = neighborhood.fill_neighborhood(grid)
         pprint(grid)
-    
 
 game = Game()
 game.init_board()  
