@@ -20,5 +20,3 @@ class Player:
 
 player = Player()
 player.gen_weapons(player.weapons)
-for i in range(len(player.weapons)):
-	print(player.weapons[i].weapon_name)
