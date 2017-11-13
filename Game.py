@@ -20,7 +20,19 @@ class Game:
         game.grid[rand_width][rand_height].append(player)
         pprint(game.grid[rand_width][rand_height])
 
-    #def get_game_state():
+    def get_user_move(self, player, game):
+        
+        possible_moves = {'1': 'n', '2': 's', '3': 'e', '4': 'w', 
+                            '5': 'N', '6': 'S', '7': 'E', '8': 'W'}
+        move = eval(input("Which way?"))
+        print(move)
+        if move in possible_moves:
+            the_move = possible_moves[move]
+            print(the_move)
+        else:
+            print("Silly person, can't move that way")
+        #if move == 'W' or move == 'w':
+        #    print(move)
 
     def move_north(self, player, game):
         print("North")
@@ -37,7 +49,8 @@ class Game:
 game = Game()
 game.init_board()  
 player = Player()
-game.spawn_player(player, game)      
+game.spawn_player(player, game)
+game.get_user_move(player, game)      
 
 
 
