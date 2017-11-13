@@ -13,7 +13,7 @@ class Player:
 		new_weapon = Weapon(is_hershey_kiss)
 		self.weapons.append(new_weapon)
 		is_hershey_kiss = True
-		for x in xrange(9):
+		for x in range(9):
 			new_weapon = Weapon(is_hershey_kiss)
 			self.weapons.append(new_weapon)
 		return weapons

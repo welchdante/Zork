@@ -1,6 +1,7 @@
 from Neighborhood import *
 from Player import * 
 from random import randint
+#from six.moves import input
 
 class Game:
 
@@ -22,35 +23,35 @@ class Game:
 
     def get_user_move(self, player, game):
         
-        possible_moves = {'1': 'n', '2': 's', '3': 'e', '4': 'w', 
-                            '5': 'N', '6': 'S', '7': 'E', '8': 'W'}
-        move = eval(input("Which way?"))
+        possible_moves = {'w': 'North', 's': 'South', 'd': 'East', 'a': 'West', 
+                            'W': 'North', 'S': 'South', 'D': 'East', 'A': 'West'}
+        move = input("Which way?")
         print(move)
         if move in possible_moves:
             the_move = possible_moves[move]
-            print(the_move)
+            self.movement(player, game, the_move)
         else:
-            print("Silly person, can't move that way")
-        #if move == 'W' or move == 'w':
-        #    print(move)
+            print("Silly person, that's not a direction")
 
-    def move_north(self, player, game):
-        print("North")
+    def movement(self, player, game, the_move):
+        if the_move == 'North':
+            print("Moving north")
+        elif the_move == 'South':
+            print("Moving south")
+        elif the_move == 'East':
+            print("Moving east")
+        elif the_move == 'West':
+            print("Moving west")
+        else:
+            print("Invalid move")
 
-    def move_south(self, player, game):
-        print("South")
-
-    def move_east(self, player, game):
-        print("East")
-
-    def move_west(self, player, game):
-        print("West")
+    #def get_current_tile(self, player, game):
+    #    pprint(game.grid[current_width][current_height])
 
 game = Game()
 game.init_board()  
 player = Player()
 game.spawn_player(player, game)
-game.get_user_move(player, game)      
-
+game.get_user_move(player, game)
 
 

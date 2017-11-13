@@ -9,7 +9,7 @@ class Neighborhood:
 
     def make_grid(self, rows, cols):
         grid = []
-        for row in xrange(rows): grid += [[0]*cols]
+        for row in range(rows): grid += [[0]*cols]
         return grid
 
     def fill_location(self, location):

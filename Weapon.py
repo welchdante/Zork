@@ -1,9 +1,8 @@
 from random import random, randint, uniform
 class Weapon:
 
-     def __init__(self, other):
+	def __init__(self, other):
 		if other:
-		
 			r = randint(0,2)
 			if r == 0 :
 				self.weapon_name = "Sour Straws"
