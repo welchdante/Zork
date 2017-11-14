@@ -88,14 +88,13 @@ class Game:
             self.current_height = current_height
         else: 
             print("Stay in the neighborhood to save the world!")
-    #def get_current_tile(self, player, game):
-    #    pprint(game.grid[current_width][current_height])
 
 game = Game()
 game.init_board()  
 player = Player()
 game.spawn_player(player, game)
-game.get_user_move(player, game)
+while not game.game_won:
+    game.get_user_move(player, game)
 
 
 
