@@ -1,7 +1,6 @@
 from Neighborhood import *
 from Player import * 
 from random import randint
-#from six.moves import input
 
 class Game:
 
@@ -27,7 +26,7 @@ class Game:
     def get_user_move(self, player, game):
         possible_moves = {'w': 'North', 's': 'South', 'd': 'East', 'a': 'West', 
                             'W': 'North', 'S': 'South', 'D': 'East', 'A': 'West',
-                            'e': 'Enter', 'E': 'Enter'}
+                            'e': 'Enter', 'E': 'Enter', 'q': 'Exit', 'Q': 'Exit'}
         move = input("What would you like to do?")
         if move in possible_moves:
             the_move = possible_moves[move]
@@ -38,12 +37,16 @@ class Game:
     def movement(self, player, game, the_move):
         if the_move == 'North' and not self.in_house:
             self.move_north(player, game, self.current_width, self.current_height)
-        elif the_move == 'South':
+        elif the_move == 'South' and not self.in_house:
             self.move_south(player, game, self.current_width, self.current_height)
-        elif the_move == 'East':
+        elif the_move == 'East' and not self.in_house:
             self.move_east(player, game, self.current_width, self.current_height)
-        elif the_move == 'West':
+        elif the_move == 'West' and not self.in_house:
             self.move_west(player, game, self.current_width, self.current_height)
+        elif the_move == 'Enter' and not self.in_house:
+            self.enter_house(player, game, self.current_width, self.current_height)
+        elif the_move == 'Exit' and self.in_house:
+            self.exit_house(player, game)
         else:
             print("Invalid move")
 
@@ -90,6 +93,30 @@ class Game:
             self.current_height = current_height
         else: 
             print("Stay in the neighborhood to save the world!")
+    
+    def enter_house(self, player, game, current_width, current_height):
+        self.in_house = True
+        self.see_contents(game, current_width, current_height)
+        print("You can either fight or leave the house")
+    
+    def exit_house(self, player, game):
+        self.in_house = False
+
+    def see_contents(self, game, current_width, current_height):
+        print("Contents of the house: ")
+        for monster in game.grid[current_width][current_height]:
+            if type(monster) is Ghoul:
+                print("Ghoul")
+            elif type(monster) is Vampire:
+                print("Vampire")
+            elif type(monster) is Werewolf:
+                print("Werewolf")
+            elif type(monster) is Zombie:
+                print("Zombie")
+            elif type(monster) is Person:
+                print("Person")
+            else:
+                print("Yourself")
 
 game = Game()
 game.init_board()  
@@ -97,8 +124,6 @@ player = Player()
 game.spawn_player(player, game)
 while not game.game_won:
     game.get_user_move(player, game)
-    
-
 
 
 #print(game.grid[current_width][current_height])
