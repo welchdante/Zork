@@ -7,6 +7,7 @@ class Game:
 
     def __init__(self):
         self.game_won = False
+        self.in_house = False
 
     def init_board(self):
         self.neighborhood = Neighborhood(4, 4)
@@ -25,8 +26,9 @@ class Game:
 
     def get_user_move(self, player, game):
         possible_moves = {'w': 'North', 's': 'South', 'd': 'East', 'a': 'West', 
-                            'W': 'North', 'S': 'South', 'D': 'East', 'A': 'West'}
-        move = input("Which way?")
+                            'W': 'North', 'S': 'South', 'D': 'East', 'A': 'West',
+                            'e': 'Enter', 'E': 'Enter'}
+        move = input("What would you like to do?")
         if move in possible_moves:
             the_move = possible_moves[move]
             self.movement(player, game, the_move)
@@ -34,7 +36,7 @@ class Game:
             print("Silly person, that's not a direction")
 
     def movement(self, player, game, the_move):
-        if the_move == 'North':
+        if the_move == 'North' and not self.in_house:
             self.move_north(player, game, self.current_width, self.current_height)
         elif the_move == 'South':
             self.move_south(player, game, self.current_width, self.current_height)
@@ -95,7 +97,7 @@ player = Player()
 game.spawn_player(player, game)
 while not game.game_won:
     game.get_user_move(player, game)
-
+    
 
 
 
