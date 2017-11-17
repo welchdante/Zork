@@ -26,7 +26,8 @@ class Game:
     def get_user_move(self, player, game):
         possible_moves = {'w': 'North', 's': 'South', 'd': 'East', 'a': 'West', 
                             'W': 'North', 'S': 'South', 'D': 'East', 'A': 'West',
-                            'e': 'Enter', 'E': 'Enter', 'q': 'Exit', 'Q': 'Exit'}
+                            'e': 'Enter', 'E': 'Enter', 'q': 'Exit', 'f': 'Fight',
+							'F': 'Fight', 'Q': 'Exit'}
         move = input("What would you like to do?")
         if move in possible_moves:
             the_move = possible_moves[move]
@@ -47,6 +48,8 @@ class Game:
             self.enter_house(player, game, self.current_width, self.current_height)
         elif the_move == 'Exit' and self.in_house:
             self.exit_house(player, game)
+		elif the_move == 'Fight' and self.in_house:
+			self.fight(self, player, game)
         else:
             print("Invalid move")
 
@@ -101,7 +104,80 @@ class Game:
     
     def exit_house(self, player, game):
         self.in_house = False
+		
+	def fight(player, game, current_width, current_height):
+		weapon_input = 'a'
+		print("Current monsters in this house are: " + self.see_contents)
+		print("Current weapons are: " + self.weapons)
+		print("Choose which weapon to fight with.")
+		
+		while(weapon_input.type != int)
+			weapon_input = input("Enter a value 0-9: ")
+		
+		if(self.weapons[weapon_input] == 'Hershey Kisses')
+			fight_hersheyKisses(player, game, current_width, current_height)
+		elif(self.weapons[weapon_input] == 'Nerd Bombs')
+			fight_nerdBombs(player, game, current_width, current_height)
+		elif(self.weapons[weapon_input] == 'Chocolate Bars')
+			fight_chocolateBars(player, game, current_width, current_height)
+		elif(self.weapons[weapon_input] == 'Sour Straws')
+			fight_sourStraws(player, game, current_width, current_height)
+			
+		
+	def fight_hersheyKisses(player, game, current_width, current_height):
+		y = self.monsters_in_house.length
+		for x in range(y)
+			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + 1)
+				if(self.monsters_in_house[y].health <= 0)
+					self.monsters_in_house[y] = person(self)
+				else:	
+					self.health = self.health - self.monsters_in_house[y].attack
+			else:
+				self.health = self.health + 1		
+				
 
+	def fight_nerdBombs(player, game, current_width, current_height):
+		y = self.monsters_in_house.length
+		for x in range(y)
+			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
+				if(self.monsters_in_house[y].health <= 0)
+					self.monsters_in_house[y] = person(self)
+				else:
+					else:	
+					self.health = self.health - self.monsters_in_house[y].attack
+			else: 
+				self.health = self.health + 1	
+
+	
+	def fight_chocolateBars(player, game, current_width, current_height):
+		y = self.monsters_in_house.length
+		for x in range(y)
+			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
+				if(self.monsters_in_house[y].health <= 0)
+					self.monsters_in_house[y] = person(self)
+				else:	
+					self.health = self.health - self.monsters_in_house[y].attack
+			else:
+				self.health = self.health + 1	
+	
+	
+	def fight_sourStraws(player, game, current_width, current_height):
+		y = self.monsters_in_house.length
+		for x in range(y)
+			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
+				if(self.monsters_in_house[y].health <= 0)
+					self.monsters_in_house[y] = person(self)
+				else:	
+					self.health = self.health - self.monsters_in_house[y].attack
+			else: 
+				self.health = self.health + 1
+		
+		
+		
     def see_contents(self, game, current_width, current_height):
         print("Contents of the house: ")
         for monster in game.grid[current_width][current_height]:
