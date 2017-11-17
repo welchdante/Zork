@@ -5,7 +5,7 @@ from random import randint
 class Game:
 
     def __init__(self):
-        self.game_won = False
+        self.game_over = False
         self.in_house = False
 
     def init_board(self):
@@ -114,68 +114,78 @@ class Game:
 		while(weapon_input.type != int)
 			weapon_input = input("Enter a value 0-9: ")
 		
-		if(self.weapons[weapon_input] == 'Hershey Kisses')
+		if self.weapons[weapon_input] == 'Hershey Kisses' :
 			fight_hersheyKisses(player, game, current_width, current_height)
-		elif(self.weapons[weapon_input] == 'Nerd Bombs')
-			fight_nerdBombs(player, game, current_width, current_height)
-		elif(self.weapons[weapon_input] == 'Chocolate Bars')
-			fight_chocolateBars(player, game, current_width, current_height)
-		elif(self.weapons[weapon_input] == 'Sour Straws')
-			fight_sourStraws(player, game, current_width, current_height)
+		elif self.weapons[weapon_input] == 'Nerd Bombs' :
+			fight_nerdBombs(player, game, current_width, current_height, weapon_input)
+		elif self.weapons[weapon_input] == 'Chocolate Bars' :
+			fight_chocolateBars(player, game, current_width, current_height, weapon_input)
+		elif self.weapons[weapon_input] == 'Sour Straws' :
+			fight_sourStraws(player, game, current_width, current_height, weapon_input)
 			
 		
 	def fight_hersheyKisses(player, game, current_width, current_height):
 		y = self.monsters_in_house.length
 		for x in range(y)
-			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
-				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + 1)
-				if(self.monsters_in_house[y].health <= 0)
+			if type(monster) is not Person:
+                self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + 1)
+				if self.monsters_in_house[y].health <= 0 :
 					self.monsters_in_house[y] = person(self)
 				else:	
 					self.health = self.health - self.monsters_in_house[y].attack
 			else:
-				self.health = self.health + 1		
+				self.health = self.health + 1	
+		if self.health <= 0 :
+			self.game_over = True;
+			print("You died!")
 				
 
-	def fight_nerdBombs(player, game, current_width, current_height):
+	def fight_nerdBombs(player, game, current_width, current_height, input):
 		y = self.monsters_in_house.length
 		for x in range(y)
-			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
-				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
-				if(self.monsters_in_house[y].health <= 0)
+			if type(monster) is not Person:
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + self.weapons[input].attack)
+				if self.monsters_in_house[y].health <= 0 :
 					self.monsters_in_house[y] = person(self)
 				else:
 					else:	
 					self.health = self.health - self.monsters_in_house[y].attack
 			else: 
 				self.health = self.health + 1	
+		if self.health <= 0 :
+			self.game_over = True;
+			print("You died!")
 
 	
 	def fight_chocolateBars(player, game, current_width, current_height):
 		y = self.monsters_in_house.length
 		for x in range(y)
-			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
-				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
-				if(self.monsters_in_house[y].health <= 0)
+			if type(monster) is not Person:
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + self.weapons[input].attack)
+				if self.monsters_in_house[y].health <= 0 :
 					self.monsters_in_house[y] = person(self)
 				else:	
 					self.health = self.health - self.monsters_in_house[y].attack
 			else:
 				self.health = self.health + 1	
-	
-	
+		if self.health <= 0 :
+			self.game_over = True;
+			print("You died!")
+			
 	def fight_sourStraws(player, game, current_width, current_height):
 		y = self.monsters_in_house.length
 		for x in range(y)
-			if(self.monsters_in_house[y] != 'Person' || self.monsters_in_house[y] != 'person')
-				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + CURRENT WEAPON GOES HERE)
-				if(self.monsters_in_house[y].health <= 0)
+			if type(monster) is not Person:
+				self.monsters_in_house[y].health = self.monsters_in_house[y].health - (self.base_attack + self.weapons[input].attack)
+				if self.monsters_in_house[y].health <= 0 :
 					self.monsters_in_house[y] = person(self)
 				else:	
 					self.health = self.health - self.monsters_in_house[y].attack
 			else: 
 				self.health = self.health + 1
-		
+		if self.health <= 0 :
+			self.game_over = True;
+			print("You died!")
 		
 		
     def see_contents(self, game, current_width, current_height):
@@ -198,7 +208,7 @@ game = Game()
 game.init_board()  
 player = Player()
 game.spawn_player(player, game)
-while not game.game_won:
+while not game.game_over:
     game.get_user_move(player, game)
 
 
