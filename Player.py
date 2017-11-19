@@ -5,7 +5,7 @@ class Player:
 	
 	def __init__(self):
 		self.hp = randint(100,125)
-		self.base_attack = randint(10,20)
+		self.base_attack = 0
 		self.weapons = []
 		
 	def gen_weapons(self, weapons):
