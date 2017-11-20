@@ -9,26 +9,24 @@ class Game:
         self.in_house = False
 
     def init_board(self):
-        self.neighborhood = Neighborhood(4, 4)
+        self.neighborhood = Neighborhood(10, 10)
         self.grid = self.neighborhood.make_grid(self.neighborhood.height, self.neighborhood.width)
         self.grid = self.neighborhood.fill_neighborhood(self.grid)
         #pprint(self.grid)
 
-    def spawn_player(self, player, game):
+    def spawn_player(self, player):
         rand_width = randint(0, self.neighborhood.width - 1)
         rand_height = randint(0, self.neighborhood.height - 1)
-        #pprint("Contents in the home")
         self.grid[rand_width][rand_height].append(player)
         self.current_width = rand_width
         self.current_height = rand_height
-        #pprint(game.grid[rand_width][rand_height])
 
-    def instructions(self, game):
+    def instructions(self):
         print("This is the simulation for how to save the world from the candy monsters.")
         print()
         print("You win when all of the houses inhabitants are converted from monsters to people")
         print()
-        print("You've got some work to do...you currently have a %dx%d grid of houses full of monsters."  %(game.neighborhood.width, game.neighborhood.height))
+        print("You've got some work to do...you currently have a %dx%d grid of houses full of monsters."  %(self.neighborhood.width, self.neighborhood.height))
         print()
         print("Some monsters in the houses might already be people...they want to help you.")
         print("The rest of the monsters are assholes who do NOT want to help. Sorry.")
@@ -48,7 +46,7 @@ class Game:
                             'e': 'Enter', 'E': 'Enter', 'q': 'Exit', 'Q': 'Exit',
                             'f': 'Fight', 'F': 'Fight'}
         if self.in_house:
-            self.see_contents(player, game, self.current_width, self.current_height)
+            self.see_contents(player, self.current_width, self.current_height)
         move = input("What would you like to do?")
         if move in possible_moves:
             the_move = possible_moves[move]
@@ -244,9 +242,9 @@ class Game:
             self.game_over = True;
             print("You died!")
 
-    def see_contents(self, player, game, current_width, current_height):
+    def see_contents(self, player, current_width, current_height):
         print("Contents of the house: ")
-        for monster in game.grid[current_width][current_height]:
+        for monster in self.grid[current_width][current_height]:
             if type(monster) is Ghoul:
                 monster.attack = randint(15,30)
                 attributes = (monster.health, monster.attack)
@@ -273,7 +271,7 @@ class Game:
                 print()
                 print("Yourself      Health: %d    Attack: %d" %attributes)
                 print()
-        return game.grid[current_width][current_height]
+        return self.grid[current_width][current_height]
 
     def see_weapons(self, player):
         print("Current weapons: ")
@@ -297,14 +295,9 @@ game = Game()
 game.init_board()  
 player = Player()
 player.gen_weapons(player.weapons)
-game.spawn_player(player, game)
-game.instructions(game)
-#game.see_weapons(player)
+game.spawn_player(player)
+game.instructions()
 
 while not game.game_over:
     game.get_user_move(player, game)
-
-
-#print(game.grid[current_width][current_height])
-#print(len(game.grid[current_width][current_height]))
-
+    
