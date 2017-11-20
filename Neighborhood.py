@@ -28,19 +28,3 @@ class Neighborhood:
             i = i + 1
         return grid
 
-#neighborhood = Neighborhood(4, 4)
-#grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
-#grid = neighborhood.fill_neighborhood(grid)
-#pprint(grid)
-
-#board = neighborhood.generate_neighborhood(4,4)
-#neighborhood.print_board(board)
-#neighborhood.fill_neighborhood(board, neighborhood.width, neighborhood.height)
-#neighborhood.fill_neighborhood(home, neighborhood, neighborhood.width, neighborhood.height)
-
-#print()
-#print()
-#monsters = home.gen_monsters()
-#board[0][0] = monsters
-
-

@@ -1,14 +1,17 @@
 from Neighborhood import *
-
-def setup():
-    neighborhood = Neighborhood(4, 4)
-    grid = neighborhood.make_grid(neighborhood.height, neighborhood.width)
-    grid = neighborhood.fill_neighborhood(grid)
-    pprint(grid)
-
+from Game import *
 
 def main():
-    setup()
+    game = Game()
+    game.init_board()  
+    player = Player()
+    player.gen_weapons(player.weapons)
+    game.spawn_player(player)
+    game.instructions()
+
+    while not game.game_over:
+        game.get_user_move(player)
+
 
 if __name__ == "__main__":
     main()

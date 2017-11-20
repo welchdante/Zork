@@ -17,6 +17,3 @@ class Player:
 			new_weapon = Weapon(is_hershey_kiss)
 			self.weapons.append(new_weapon)
 		return weapons
-
-player = Player()
-player.gen_weapons(player.weapons)

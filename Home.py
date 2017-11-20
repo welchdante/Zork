@@ -58,7 +58,3 @@ class Home:
     def get_population(self, monsters_in_house):
         population = len(monsters_in_house)
         return population
-
-#home = Home()
-#home.gen_monsters()
-#home.get_population(home.monsters_in_house)
