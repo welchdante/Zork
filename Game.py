@@ -15,10 +15,10 @@ class Game:
         #pprint(self.grid)
 
     def spawn_player(self, player, game):
-        rand_width = randint(0, game.neighborhood.width - 1)
-        rand_height = randint(0, game.neighborhood.height - 1)
+        rand_width = randint(0, self.neighborhood.width - 1)
+        rand_height = randint(0, self.neighborhood.height - 1)
         #pprint("Contents in the home")
-        game.grid[rand_width][rand_height].append(player)
+        self.grid[rand_width][rand_height].append(player)
         self.current_width = rand_width
         self.current_height = rand_height
         #pprint(game.grid[rand_width][rand_height])
@@ -75,7 +75,6 @@ class Game:
             print("Invalid move")
 
     def move_north(self, player, game, current_width, current_height):
-        
         if current_height - 1 >= 0:
             game.grid[current_width][current_height].pop(len(game.grid[current_width][current_height]) - 1)
             current_height = current_height - 1
@@ -88,7 +87,6 @@ class Game:
             print("Stay in the neighborhood to save the world!")
 
     def move_south(self, player, game, current_width, current_height):
-        
         if current_height + 1 < self.neighborhood.height:
             game.grid[current_width][current_height].pop(len(game.grid[current_width][current_height]) - 1)
             current_height = current_height + 1
@@ -101,7 +99,6 @@ class Game:
             print("Stay in the neighborhood to save the world!")
     
     def move_east(self, player, game, current_width, current_height):
-        
         if current_width + 1 < self.neighborhood.width:
             game.grid[current_width][current_height].pop(len(game.grid[current_width][current_height]) - 1)
             current_width = current_width + 1
@@ -114,7 +111,6 @@ class Game:
             print("Stay in the neighborhood to save the world!")
     
     def move_west(self, player, game, current_width, current_height):
-    
         if current_width - 1 >= 0:
             game.grid[current_width][current_height].pop(len(game.grid[current_width][current_height]) - 1)
             current_width = current_width - 1
@@ -146,96 +142,126 @@ class Game:
         if current_weapons[user_input].weapon_name == 'Hershey Kisses':
             game.attack_hershey_kisses(player, game, current_width, current_height)
         elif current_weapons[user_input].weapon_name == 'Nerd Bombs':
-            game.attack_nerd_bombs(player, game, current_width, current_height, user_input)
+            if current_weapons[user_input].use_value > 0:
+                game.attack_nerd_bombs(player, game, current_width, current_height, current_weapons[user_input].attack)
+                current_weapons[user_input].use_value = current_weapons[user_input].use_value - 1
+            else:
+                print("Choose a different weapon")
         elif current_weapons[user_input].weapon_name == 'Chocolate Bars':
-            game.attack_chocolate_bars(player, game, current_width, current_height, user_input)
+            if current_weapons[user_input].use_value > 0:
+                game.attack_chocolate_bars(player, game, current_width, current_height, current_weapons[user_input].attack)
+                current_weapons[user_input].use_value = current_weapons[user_input].use_value - 1
+            else:
+                print("Choose a different weapon")
         elif current_weapons[user_input].weapon_name == 'Sour Straws':
-            game.attack_sour_straws(player, game, current_width, current_height, user_input)
+            if current_weapons[user_input].use_value > 0:
+                game.attack_sour_straws(player, game, current_width, current_height, current_weapons[user_input].attack)
+                current_weapons[user_input].use_value = current_weapons[user_input].use_value - 1
+            else:
+                print("Choose a different weapon")
 
-    def monster_attack(self):
-        print("Monster attack")
+    def monster_attack(self, monster, player):
+        player.hp = player.hp - monster.attack
+            
 
     def attack_hershey_kisses(self, player, game, current_width, current_height):
         monsters_in_house = game.grid[current_width][current_height]
         for i, monster in enumerate(monsters_in_house):
             if type(monster) is not Person and type(monster) is not Player:
-                monsters_in_house[i].health = monsters_in_house[i].health - player.base_attack - 1
+                monsters_in_house[i].health = monsters_in_house[i].health - player.base_attack
                 if monsters_in_house[i].health <= 0:
                     monsters_in_house[i] = Person()
-                #else:    
-                #    self.health = self.health - self.monsters_in_house[x].attack
-            elif type(monster) is Player:
-                print()
-            else:
-                print("Person")
+                else:    
+                    self.monster_attack(monster, player)
+            elif type(monster) is Person:
                 player.hp = player.hp + 1
+            else:
+                print("")
         if player.hp <= 0 :
             self.game_over = True;
             print("You died!")
                 
-    def attack_nerd_bombs(self, player, game, current_width, current_height, input):
-        y = self.monsters_in_house.length
-        for x in range(y):
-            if type(monster) is not Person:
-                self.monsters_in_house[x].health = self.monsters_in_house[x].health - (self.base_attack + self.weapons[input].attack)
-                if self.monsters_in_house[x].health <= 0 :
-                    self.monsters_in_house[x] = person(self)
+    def attack_nerd_bombs(self, player, game, current_width, current_height, modifier):
+        monsters_in_house = game.grid[current_width][current_height]
+        for i, monster in enumerate(monsters_in_house):
+            if type(monster) is not Person and type(monster) is not Player:
+                if type(monster) is Ghoul:
+                    monsters_in_house[i].health = monsters_in_house[i].health -  (5 * player.base_attack)
                 else:
-                    self.health = self.health - self.monsters_in_house[y].attack
-            else: 
-                self.health = self.health + 1    
-        if self.health <= 0 :
+                    monsters_in_house[i].health = monsters_in_house[i].health - (modifier * player.base_attack)
+                if monsters_in_house[i].health <= 0:
+                    monsters_in_house[i] = Person()
+                else:    
+                    self.monster_attack(monster, player)
+            elif type(monster) is Person:
+                player.hp = player.hp + 1
+            else:
+                print("")
+        if player.hp <= 0 :
             self.game_over = True;
             print("You died!")
     
-    def attack_chocolate_bars(self, player, game, current_width, current_height):
-        y = self.monsters_in_house.length
-        for x in range(y):
-            if type(monster) is not Person:
-                self.monsters_in_house[x].health = self.monsters_in_house[x].health - (self.base_attack + self.weapons[input].attack)
-                if self.monsters_in_house[x].health <= 0 :
-                    self.monsters_in_house[x] = person(self)
+    def attack_chocolate_bars(self, player, game, current_width, current_height, modifier):
+        print(modifier)
+        monsters_in_house = game.grid[current_width][current_height]
+        for i, monster in enumerate(monsters_in_house):
+            if type(monster) is not Person and type(monster) is not Player:
+                if type(monster) is Vampire or Werewolf:
+                    monsters_in_house[i].health = monsters_in_house[i].health - player.base_attack
+                else:
+                    monsters_in_house[i].health = monsters_in_house[i].health - (modifier * player.base_attack)
+                if monsters_in_house[i].health <= 0:
+                    monsters_in_house[i] = Person()
                 else:    
-                    self.health = self.health - self.monsters_in_house[y].attack
+                    self.monster_attack(monster, player)
+            elif type(monster) is Person:
+                player.hp = player.hp + 1
             else:
-                self.health = self.health + 1    
-        if self.health <= 0:
+                print("")
+        if player.hp <= 0 :
             self.game_over = True;
             print("You died!")
             
-    def attack_sour_straws(self, player, game, current_width, current_height):
-        y = self.monsters_in_house.length
-        for x in range(y):
-            if type(monster) is not Person:
-                self.monsters_in_house[x].health = self.monsters_in_house[x].health - (self.base_attack + self.weapons[input].attack)
-                if self.monsters_in_house[x].health <= 0:
-                    self.monsters_in_house[x] = person(self)
+    def attack_sour_straws(self, player, game, current_width, current_height, modifier):
+        monsters_in_house = game.grid[current_width][current_height]
+        for i, monster in enumerate(monsters_in_house):
+            if type(monster) is not Person and type(monster) is not Player:
+                if type(monster) is Zombie:
+                    monsters_in_house[i].health = monsters_in_house[i].health -  (2 * (modifier * player.base_attack))
+                elif type(Monster) is Werewolf:
+                    monsters_in_house[i].health = monsters_in_house[i].health - player.base_attack
+                else:
+                    monsters_in_house[i].health = monsters_in_house[i].health - (modifier * player.base_attack)
+                if monsters_in_house[i].health <= 0:
+                    monsters_in_house[i] = Person()
                 else:    
-                    self.health = self.health - self.monsters_in_house[y].attack
-            else: 
-                self.health = self.health + 1
-        if self.health <= 0 :
+                    self.monster_attack(monster, player)
+            elif type(monster) is Person:
+                player.hp = player.hp + 1
+            else:
+                print("")
+        if player.hp <= 0 :
             self.game_over = True;
             print("You died!")
-        
+
     def see_contents(self, player, game, current_width, current_height):
         print("Contents of the house: ")
         for monster in game.grid[current_width][current_height]:
             if type(monster) is Ghoul:
-                attack_this_turn = randint(15,30)
-                attributes = (monster.health, attack_this_turn)
+                monster.attack = randint(15,30)
+                attributes = (monster.health, monster.attack)
                 print("Ghoul         Health: %d      Attack: %d" %attributes)    
             elif type(monster) is Vampire:
-                attack_this_turn = randint(10,20)
-                attributes = (monster.health, attack_this_turn)
+                monster.attack = randint(10,20)
+                attributes = (monster.health, monster.attack)
                 print("Vampire       Health: %d     Attack: %d" %attributes)
             elif type(monster) is Werewolf:
-                attack_this_turn = randint(0,40)
-                attributes = (monster.health, attack_this_turn)
+                monster.attack = randint(0,40)
+                attributes = (monster.health, monster.attack)
                 print("Werewolf      Health: %d     Attack: %d" %attributes)
             elif type(monster) is Zombie:
-                attack_this_turn = randint(0,10)
-                attributes = (monster.health, attack_this_turn)
+                monster.attack = randint(0,10)
+                attributes = (monster.health, monster.attack)
                 print("Zombie        Health: %d      Attack: %d" %attributes)
             elif type(monster) is Person:
                 attack_this_turn = -1
