@@ -75,13 +75,6 @@ Rubric:
 | Error handling | Gracefully handles input errors | Handles at least one type of error gracefully | Does not include error handling |
 | On time | Submitted before due date and time | Submitted up to 1 day late | Submitted more than 1 day late |
 
-## Submission Process and Deadline
 
-This assignment is due on Friday, November 17 at midnight. Submit as follows:
-
->Upload to Blackboard, either by zipping your files or by commenting with a Github URL (Preferred!).
-
-If you have questions about this process, see me immediately.
-
-#TO RUN
+## TO RUN
 Clone the repository and run the command "python3 __main__.py"
