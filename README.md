@@ -82,3 +82,6 @@ This assignment is due on Friday, November 17 at midnight. Submit as follows:
 >Upload to Blackboard, either by zipping your files or by commenting with a Github URL (Preferred!).
 
 If you have questions about this process, see me immediately.
+
+#TO RUN
+Clone the repository and run the command "python3 __main__.py"
