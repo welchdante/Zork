@@ -7,7 +7,8 @@ class Player:
 		self.hp = randint(100,125)
 		self.base_attack = 0
 		self.weapons = []
-		
+	
+	#generates the list of weapons
 	def gen_weapons(self, weapons):
 		is_hershey_kiss = False
 		new_weapon = Weapon(is_hershey_kiss)
